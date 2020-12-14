@@ -74,7 +74,9 @@ namespace Duck.Http.Service.Unity
 
 		public IHttpRequest Delete(string uri)
 		{
-			return new UnityHttpRequest(UnityWebRequest.Delete(uri));
+			var request = UnityWebRequest.Delete(uri);
+			request.downloadHandler = new DownloadHandlerBuffer();
+			return new UnityHttpRequest(request);
 		}
 
 		public IHttpRequest Head(string uri)
